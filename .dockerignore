@@ -1,0 +1,26 @@
+# ── Dependencies ─────────────────────────────────────────────────────────────
+node_modules
+
+# ── Next.js build output ──────────────────────────────────────────────────────
+.next
+
+# ── Log files ─────────────────────────────────────────────────────────────────
+logs
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+.git
+.gitignore
+
+# ── Environment files (never bake secrets into an image) ─────────────────────
+.env
+.env.*
+
+# ── OS / IDE artefacts ────────────────────────────────────────────────────────
+.DS_Store
+.vscode
+.idea
+
+# ── Test / dev files (not needed at runtime) ─────────────────────────────────
+tests
+coverage
+README.md

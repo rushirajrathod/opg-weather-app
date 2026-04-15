@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Smooth colour transitions when toggling dark mode */
+  body, header, footer, article, aside, section {
+    @apply transition-colors duration-300;
+  }
+}

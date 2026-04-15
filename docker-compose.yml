@@ -1,0 +1,18 @@
+# docker-compose.yml — for local testing of the production Docker image
+#
+# Usage:
+#   docker compose up --build        ← build image + start container
+#   docker compose up -d             ← run in background
+#   docker compose down              ← stop and remove container
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+    restart: unless-stopped
