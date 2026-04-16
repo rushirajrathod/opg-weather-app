@@ -9,7 +9,7 @@ A full-stack weather dashboard built with **Next.js 15** that displays real-time
 | Environment | URL |
 |-------------|-----|
 | Local dev   | http://localhost:3000 |
-| Production  | *(deploy to Vercel / Railway and update this field)* |
+| Production  | https://opg-weather-rushi-fqa8bwfrhnfdbef8.eastus-01.azurewebsites.net |
 
 **GitHub:** https://github.com/rushi-03/opg-weather-app
 
@@ -231,16 +231,44 @@ In development, the same output is printed to the console with colour and a shor
 
 ---
 
+## Deployment
+
+The app is containerised and deployed to **Azure App Service** via a GitHub Actions pipeline.
+
+### How it works
+
+Pushing to `main` triggers [`.github/workflows/azure-deploy.yml`](.github/workflows/azure-deploy.yml), which:
+
+1. Builds a Docker image for `linux/amd64`
+2. Pushes it to **Azure Container Registry (ACR)** — tagged with both the commit SHA and `latest`
+3. Deploys the SHA-tagged image to the Azure Web App using `azure/webapps-deploy`
+
+### Required GitHub Secrets
+
+| Secret | Description |
+|--------|-------------|
+| `AZURE_ACR_NAME` | ACR registry name (without `.azurecr.io`) |
+| `REGISTRY_USERNAME` | ACR admin username |
+| `REGISTRY_PASSWORD` | ACR admin password |
+| `AZURE_WEBAPP_NAME` | Azure Web App name |
+| `AZURE_WEBAPP_PUBLISH_PROFILE` | Publish profile XML from the Azure portal |
+
+---
+
 ## Tech Stack
 
-| Layer     | Technology                        |
-|-----------|-----------------------------------|
-| Framework | Next.js 15 (App Router)           |
-| Language  | TypeScript 5                      |
-| Styling   | Tailwind CSS 3                    |
-| Logging   | Winston 3                         |
-| Testing   | Jest 29 + ts-jest                 |
-| Data      | National Weather Service free API |
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Framework  | Next.js 15 (App Router)           |
+| Language   | TypeScript 5                      |
+| Styling    | Tailwind CSS 3                    |
+| Logging    | Winston 3                         |
+| Testing    | Jest 29 + ts-jest                 |
+| Data       | National Weather Service free API |
+| Container  | Docker (linux/amd64)              |
+| Registry   | Azure Container Registry (ACR)    |
+| Hosting    | Azure App Service                 |
+| CI/CD      | GitHub Actions                    |
 
 ---
 

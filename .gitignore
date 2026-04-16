@@ -29,3 +29,5 @@ Thumbs.db
 
 # ── Jest coverage ─────────────────────────────────────────────────────────────
 coverage/
+
+*.PublishSettings
